@@ -24,7 +24,7 @@ function Quiz() {
         key={index}
         id={index}
         question={decodeHtml(item.question)}
-        answers={decodeHtml(shuffleArray(item.answers))}
+        answers={decodeHtml(item.answers)}
         correctAnswer={decodeHtml(item.correctAnswer)}
         isFinished={isFinished}
       />
