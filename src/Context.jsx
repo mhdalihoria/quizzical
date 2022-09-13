@@ -5,7 +5,7 @@ const Context = createContext();
 
 function ContextProvider(props) {
   const [allQuestions, setAllQuestions] = useState([]);
-  const scoreRef = useRef(0)
+  const [score, setScore] = useState(0)
 
   const [responseArray] = useFetch("https://opentdb.com/api.php?amount=5") 
   
@@ -16,10 +16,16 @@ function ContextProvider(props) {
     }
   }
 
+  function updateScore(amount) {
+    setScore(prevScore => {
+      return prevScore + amount
+    })
+  }
+
   assignFetchedQuestions()
 
   return (
-    <Context.Provider value={{allQuestions, scoreRef}}> 
+    <Context.Provider value={{allQuestions, score, updateScore}}> 
         {props.children}
     </Context.Provider>
   )

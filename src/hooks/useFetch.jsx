@@ -15,6 +15,7 @@ export default function useFetch(url) {
         setResponseArray(questions)
     }
 
+
     useEffect(() => {
         async function doFetch() {
           const res = await fetch(url);
@@ -35,31 +36,3 @@ export default function useFetch(url) {
     
   return [responseArray]
 }
-
-
-/*useEffect(() => {
-    async function doFetch() {
-      const res = await fetch("https://opentdb.com/api.php?amount=5");
-      const data = await res.json();
-
-      try {
-        if (data.response_code === 0) {
-          const arrangedQuestions = data.results.map((item) => {
-            return {
-              question: item.question,
-              answers: [...item.incorrect_answers, item.correct_answer],
-              correctAnswer: item.correct_answer,
-            };
-          });
-          setAllQuestions(arrangedQuestions);
-
-
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
-    doFetch();
-  }, []);
- */
