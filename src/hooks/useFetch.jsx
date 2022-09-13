@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { shuffleArray } from "../utils/shuffle";
 
 export default function useFetch(url) {
     const [responseArray, setResponseArray] = useState([])
@@ -7,7 +8,7 @@ export default function useFetch(url) {
             
             return {
                 question: question.question,
-                answers: [...question.incorrect_answers, question.correct_answer],
+                answers: shuffleArray([...question.incorrect_answers, question.correct_answer]),
                 correctAnswer: question.correct_answer,
               };
         })

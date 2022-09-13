@@ -1,14 +1,12 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import { ContextObj } from "../Context";
-import { shuffleArray } from "../utils/shuffle";
 
 function Question({id, question, correctAnswer, answers, isFinished }) {
   const [isChecked, setIsChecked] = useState(new Array(4).fill(false));
   let { updateScore , score } = useContext(ContextObj);
+  
 
-  //todo:well will do something similar with this to calculate the score
-
-  console.log(isFinished);
+  // console.log(isFinished);
 
   function selectAnswer(e, index) {
     setIsChecked((prevIsChecked) => {
@@ -26,13 +24,13 @@ function Question({id, question, correctAnswer, answers, isFinished }) {
       return isCheckedClone;
     });
 
-    console.log(e.target.value);
+    // console.log(e.target.value);
   }
 
   const answerBtns = answers.split(",").map((answer, index) => {
     // if the game is finished, and I have an answer selected, and I have an answer, that matches the value of the correct answer give me access to: 
       if (isFinished && isChecked[index] && answer === correctAnswer) {
-        updateScore(1)
+        // updateScore(1)
       }
       console.log(score);
     
