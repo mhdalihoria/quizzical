@@ -2,27 +2,29 @@ import React, { useContext, useRef, useEffect, useState } from "react";
 import { ContextObj } from "../Context";
 
 function Question({id, question, correctAnswer, answers, isFinished }) {
-  const [isChecked, setIsChecked] = useState(new Array(4).fill(false));
+  // const [isChecked, setIsChecked] = useState(new Array(4).fill(false));
+  const [selectedAnswer, setSelectedAnswer] = useState()
   let { updateScore , score } = useContext(ContextObj);
   
 
   // console.log(isFinished);
 
-  function selectAnswer(e, index) {
-    setIsChecked((prevIsChecked) => {
-      const isCheckedClone = [...prevIsChecked];
-      isCheckedClone.forEach((value, key) => {
-        if (
-          isCheckedClone[key] === true &&
-          isCheckedClone[key] !== isCheckedClone[index]
-        ) {
-          isCheckedClone[key] = false;
-        }
-      });
+  function selectAnswer(e, answer) {
+    setSelectedAnswer(answer)
+    // setIsChecked((prevIsChecked) => {
+    //   const isCheckedClone = [...prevIsChecked];
+    //   isCheckedClone.forEach((value, key) => {
+    //     if (
+    //       isCheckedClone[key] === true &&
+    //       isCheckedClone[key] !== isCheckedClone[index]
+    //     ) {
+    //       isCheckedClone[key] = false;
+    //     }
+    //   });
 
-      isCheckedClone[index] = !isCheckedClone[index];
-      return isCheckedClone;
-    });
+    //   isCheckedClone[index] = !isCheckedClone[index];
+    //   return isCheckedClone;
+    // });
 
     // console.log(e.target.value);
   }
@@ -48,7 +50,7 @@ function Question({id, question, correctAnswer, answers, isFinished }) {
         key={index}
         className={`question--answer--option ${answerStyle}`}
         disabled={isFinished}
-        onClick={(e) => selectAnswer(e, index)}
+        onClick={(e) => selectAnswer(e, answer)}
         value={answer}
       >
         {answer}
