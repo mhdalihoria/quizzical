@@ -1,9 +1,9 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
-import { ContextObj } from "../Context";
+// import { ContextObj } from "../Context";
 
 function Question({id, question, correctAnswer, answers, selectedAnswer, onChange }) {
   // const [selectedAnswer, setSelectedAnswer] = useState()
-  let { updateScore , score } = useContext(ContextObj);
+  // let { updateScore , score } = useContext(ContextObj);
   const isDisabled = !!correctAnswer
 
   // function selectAnswer(e, answer) {

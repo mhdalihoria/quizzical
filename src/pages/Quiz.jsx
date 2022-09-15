@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import Question from "../components/Question";
-import { ContextObj } from "../Context";
+// import { ContextObj } from "../Context";
 import useFetch from "../hooks/useFetch";
 import decodeHtml from "../utils/decode";
 
