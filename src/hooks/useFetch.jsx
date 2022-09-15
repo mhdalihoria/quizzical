@@ -3,7 +3,7 @@ import { shuffleArray } from "../utils/shuffle";
 
 export default function useFetch(url) {
   const [response, setResponse] = useState();
-  const [error, setError] = useState()
+  const [error, setError] = useState();
 
   function changeResponse(questions) {
     setResponse(questions);
@@ -11,21 +11,21 @@ export default function useFetch(url) {
 
   useEffect(() => {
     async function doFetch() {
-      const res = await fetch(url);
-      const data = await res.json();
-
       try {
+        const res = await fetch(url);
+        const data = await res.json();
+
         if (data.response_code === 0) {
           changeResponse(data);
         }
       } catch (e) {
         console.error(e);
-        setError(e)
+        setError(e);
       }
     }
 
     doFetch();
   }, []);
 
-  return {response, error};
+  return { response, error };
 }
