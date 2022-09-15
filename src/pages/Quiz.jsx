@@ -39,7 +39,6 @@ function Quiz() {
         selectedAnswer={selectedAnswers[index]}
         onChange={answer => setSelectedAnswer(index, answer)}
         correctAnswer={isFinished ? decodeHtml(question.correctAnswer) : null}
-        isFinished = {isFinished}
       />
     );
   });
