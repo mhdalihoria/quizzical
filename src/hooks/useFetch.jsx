@@ -10,20 +10,22 @@ export default function useFetch(url) {
       try {
         const res = await fetch(url);
         if (!res.ok) {
-          throw Error;
+          throw Error(res.statusText);
         }
 
         const data = await res.json();
 
-        if (data.response_code === 0) {
-          setResponse(data);
+        if (data.response_code !== 0) {
+          throw Error(data.response_code);
         }
+
+        setResponse(data);
       } catch (e) {
         console.error(e);
         setError(e);
       }
     }
-
+ 
     doFetch();
   }, []);
 
