@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 
 import Question from "../components/Question";
+import Error from "../components/Error";
+import Spinner from "../components/Spinner";
 // import { ContextObj } from "../Context";
 import useFetch from "../hooks/useFetch";
 import decodeHtml from "../utils/decode";
@@ -12,11 +14,11 @@ function Quiz() {
     new Array(questions.length).fill("")
   );
 
-  const {responseArray, error} = useFetch("https://opentdb.com/api.php?amount=5");
+  const {response, error} = useFetch("https://opentdb.com/api.php?amount=5");
 
   function setQuestionsArray() {
-    if (questions !== responseArray) {
-      setQuestions(responseArray);
+    if (questions !== response) {
+      setQuestions(response);
     }
   }
 
@@ -50,6 +52,15 @@ function Quiz() {
       />
     );
   });
+
+  if(error) {
+    return <Error msg={error} />
+  }
+
+  if(!response && !error) {
+    return <Spinner />
+  }
+
 
   return (
     <div className="question-container">
