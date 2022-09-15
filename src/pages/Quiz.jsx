@@ -12,7 +12,7 @@ function Quiz() {
     new Array(questions.length).fill("")
   );
 
-  const [responseArray] = useFetch("https://opentdb.com/api.php?amount=5");
+  const {responseArray, error} = useFetch("https://opentdb.com/api.php?amount=5");
 
   function setQuestionsArray() {
     if (questions !== responseArray) {

@@ -3,15 +3,7 @@ import { shuffleArray } from "../utils/shuffle";
 
 export default function useFetch(url) {
   const [responseArray, setResponseArray] = useState([]);
-  // function modifyResponse(data) {
-  // const questions = data.results.map(question => {
-
-  //     return {
-  //         question: question.question,
-  //         answers: shuffleArray([...question.incorrect_answers, question.correct_answer]),
-  //         correctAnswer: question.correct_answer,
-  //       };
-  // })
+  const [error, setError] = useState()
 
   function changeResponseArray(questions) {
     setResponseArray(questions);
@@ -28,11 +20,12 @@ export default function useFetch(url) {
         }
       } catch (e) {
         console.error(e);
+        setError(e)
       }
     }
 
     doFetch();
   }, []);
 
-  return [responseArray];
+  return {responseArray, error};
 }
