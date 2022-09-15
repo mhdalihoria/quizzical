@@ -1,17 +1,17 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import { ContextObj } from "../Context";
 
-function Question({id, question, correctAnswer, answers, isFinished }) {
-  const [selectedAnswer, setSelectedAnswer] = useState()
+function Question({id, question, correctAnswer, answers, selectedAnswer, onChange, isFinished }) {
+  // const [selectedAnswer, setSelectedAnswer] = useState()
   let { updateScore , score } = useContext(ContextObj);
 
-  function selectAnswer(e, answer) {
-    setSelectedAnswer(answer)
-  }
+  // function selectAnswer(e, answer) {
+  //   setSelectedAnswer(answer)
+  // }
 
   
   const answerBtns = answers.split(",").map((answer, index) => {
-   
+    console.log(onChange(answer))
     
     const answerStyle =
       isFinished && answer === correctAnswer
@@ -27,7 +27,7 @@ function Question({id, question, correctAnswer, answers, isFinished }) {
         key={index}
         className={`question--answer--option ${answerStyle}`}
         disabled={isFinished}
-        onClick={(e) => selectAnswer(e, answer)}
+        onClick={(e) => console.log(onChange(answer))}
         value={answer}
       >
         {answer}
