@@ -2,20 +2,23 @@ import React, { useState, useContext } from "react";
 
 import Question from "../components/Question";
 import { ContextObj } from "../Context";
+import useFetch from "../hooks/useFetch";
 import decodeHtml from "../utils/decode";
-import { shuffleArray } from "../utils/shuffle";
 
 function Quiz() {
   const [questions, setQuestions] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState(new Array(questions.length).fill(''))
-  const { allQuestions } = useContext(ContextObj);
+
+  const [responseArray] = useFetch("https://opentdb.com/api.php?amount=5") 
+
 
   function setQuestionsArray() {
-    if (questions !== allQuestions) {
-      setQuestions(allQuestions);
+    if (questions !== responseArray) {
+      setQuestions(responseArray);
     }
   }
+
   setQuestionsArray();
 
   function getAnswers(index) {
