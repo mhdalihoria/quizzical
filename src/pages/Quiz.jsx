@@ -8,10 +8,11 @@ import decodeHtml from "../utils/decode";
 function Quiz() {
   const [questions, setQuestions] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
-  const [selectedAnswers, setSelectedAnswers] = useState(new Array(questions.length).fill(''))
+  const [selectedAnswers, setSelectedAnswers] = useState(
+    new Array(questions.length).fill("")
+  );
 
-  const [responseArray] = useFetch("https://opentdb.com/api.php?amount=5") 
-
+  const [responseArray] = useFetch("https://opentdb.com/api.php?amount=5");
 
   function setQuestionsArray() {
     if (questions !== responseArray) {
@@ -22,14 +23,18 @@ function Quiz() {
   setQuestionsArray();
 
   function getAnswers(index) {
-    const answersArray = questions[index].answers
-    return answersArray
+    const answersArray = shuffleArray([
+      questions[index].incorrect_answers,
+      questions[index].correct_answer,
+    ]);
+
+    return answersArray;
   }
 
   function setSelectedAnswer(index, newSelectedAnswer) {
-    setSelectedAnswers(prevSelectedAnswers => {
-      return prevSelectedAnswers[index] = newSelectedAnswer
-    })
+    setSelectedAnswers((prevSelectedAnswers) => {
+      return (prevSelectedAnswers[index] = newSelectedAnswer);
+    });
   }
 
   const questionElements = questions.map((question, index) => {
@@ -40,7 +45,7 @@ function Quiz() {
         question={decodeHtml(question.question)}
         answers={decodeHtml(getAnswers(index))}
         selectedAnswer={selectedAnswers[index]}
-        onChange={answer => setSelectedAnswer(index, answer)}
+        onChange={(answer) => setSelectedAnswer(index, answer)}
         correctAnswer={isFinished ? decodeHtml(question.correctAnswer) : null}
       />
     );
@@ -50,7 +55,9 @@ function Quiz() {
     <div className="question-container">
       {questionElements}
       <div className="results">
-        <button className="checkAnswers" onClick={()=>setIsFinished(true)}>Check Answers</button>
+        <button className="checkAnswers" onClick={() => setIsFinished(true)}>
+          Check Answers
+        </button>
       </div>
     </div>
   );
