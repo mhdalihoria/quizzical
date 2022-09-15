@@ -16,11 +16,11 @@ function Question({id, question, correctAnswer, answers, selectedAnswer, onChang
     // console.log(!!selectedAnswer)
     
     const answerStyle =
-      isFinished && answer === correctAnswer
+      isDisabled && answer === correctAnswer
         ? "answer-correct"
-        : isFinished && selectedAnswer === answer && answer !== correctAnswer
+        : isDisabled && selectedAnswer === answer && answer !== correctAnswer
         ? "answer-incorrect"
-        : isFinished && selectedAnswer !== answer !== correctAnswer
+        : isDisabled && selectedAnswer !== answer !== correctAnswer
         ? "answer-unselected"
         : selectedAnswer === answer && "answer-selected";
 
