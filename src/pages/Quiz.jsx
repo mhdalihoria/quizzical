@@ -74,6 +74,7 @@ console.log(score)
         <button className="checkAnswers" onClick={() => setIsFinished(true)}>
           Check Answers
         </button>
+        {score}
       </div>
     </div>
   );
