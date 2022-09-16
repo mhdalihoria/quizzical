@@ -36,13 +36,12 @@ function Quiz() {
     });
   }
 
-  const questionElements = questions.map((question, index) => {
+  const questionElements = questions.current?.map((question, index) => {
     return (
       <Question
         key={index}
-        id={index}
         question={decodeHtml(question.question)}
-        answers={decodeHtml(getAnswers(index))}
+        answers={decodeHtml(question.answers)}
         selectedAnswer={selectedAnswers[index]}
         onChange={(answer) => setSelectedAnswer(index, answer)}
         correctAnswer={isFinished ? decodeHtml(question.correctAnswer) : null}
