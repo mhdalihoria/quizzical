@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { shuffleArray } from "../utils/shuffle";
 
 export default function useFetch(url) {
   const [response, setResponse] = useState();
