@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 // import { ContextObj } from "../Context";
 
-function Question({id, question, correctAnswer, answers, selectedAnswer, onChange }) {
+function Question({question, correctAnswer, answers, selectedAnswer, onChange, addScore }) {
   // const [selectedAnswer, setSelectedAnswer] = useState()
   // let { updateScore , score } = useContext(ContextObj);
   const isDisabled = !!correctAnswer
@@ -10,10 +10,7 @@ function Question({id, question, correctAnswer, answers, selectedAnswer, onChang
   //   setSelectedAnswer(answer)
   // }
 
-  
   const answerBtns = answers.split(",").map((answer, index) => {
-    // console.log(onChange(answer))
-    // console.log(!!selectedAnswer)
     
     const answerStyle =
       isDisabled && answer === correctAnswer

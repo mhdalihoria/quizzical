@@ -11,6 +11,7 @@ import { shuffleArray } from "../utils/shuffle";
 function Quiz() {
   const {response, error} = useFetch("https://opentdb.com/api.php?amount=5");
   const [isFinished, setIsFinished] = useState(false);
+  const [score, setScore] = useState(0)
 
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   if (!selectedAnswers.length && response) {
@@ -36,7 +37,17 @@ function Quiz() {
     });
   }
 
+  function addScore() {
+    setScore(prevScore => prevScore + 1)
+  }
+  console.log(score)
+
   const questionElements = questions.current?.map((question, index) => {
+
+    if(isFinished && selectedAnswers[index] === decodeHtml(question.correctAnswer)) {
+      addScore()
+    }
+
     return (
       <Question
         key={index}
@@ -45,6 +56,7 @@ function Quiz() {
         selectedAnswer={selectedAnswers[index]}
         onChange={(answer) => setSelectedAnswer(index, answer)}
         correctAnswer={isFinished ? decodeHtml(question.correctAnswer) : null}
+        addScore = {isFinished ? addScore : null}
       />
     );
   });
