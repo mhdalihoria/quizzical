@@ -11,8 +11,8 @@ import { shuffleArray } from "../utils/shuffle";
 function Quiz() {
   const {response, error} = useFetch("https://opentdb.com/api.php?amount=5");
   const [isFinished, setIsFinished] = useState(false);
-  const [score, setScore] = useState(0)
-
+  let score
+  
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   if (!selectedAnswers.length && response) {
     setSelectedAnswers(new Array(response?.results.length).fill(""))
@@ -37,16 +37,14 @@ function Quiz() {
     });
   }
 
-  function addScore() {
-    setScore(prevScore => prevScore + 1)
-  }
-  console.log(score)
-
-  const questionElements = questions.current?.map((question, index) => {
-
-    if(isFinished && selectedAnswers[index] === decodeHtml(question.correctAnswer)) {
-      addScore()
+  if (isFinished) {
+    score = 0
+    for (let i = 0; i < questions.length; i++) {
+      score += questions[i].correct_answer === selectedAnswers[i] ? 1 : 0
     }
+  }
+console.log(score)
+  const questionElements = questions.current?.map((question, index) => {
 
     return (
       <Question
@@ -55,8 +53,7 @@ function Quiz() {
         answers={decodeHtml(question.answers)}
         selectedAnswer={selectedAnswers[index]}
         onChange={(answer) => setSelectedAnswer(index, answer)}
-        correctAnswer={isFinished ? decodeHtml(question.correctAnswer) : null}
-        addScore = {isFinished ? addScore : null}
+        correctAnswer={isFinished ? decodeHtml(question.correct_answer) : null}
       />
     );
   });

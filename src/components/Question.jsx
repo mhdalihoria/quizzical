@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 // import { ContextObj } from "../Context";
 
-function Question({question, correctAnswer, answers, selectedAnswer, onChange, addScore }) {
+function Question({question, correctAnswer, answers, selectedAnswer, onChange }) {
   // const [selectedAnswer, setSelectedAnswer] = useState()
   // let { updateScore , score } = useContext(ContextObj);
   const isDisabled = !!correctAnswer
