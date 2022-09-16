@@ -14,7 +14,7 @@ function Quiz() {
     new Array(questions.length).fill("")
   );
 
-  const {response, error} = useFetch("https://opentdb.com/api.php?amount=5");
+  const [response, error] = useFetch("https://opentdb.com/api.php?amount=5");
 
   function setQuestionsArray() {
     if (questions !== response) {
