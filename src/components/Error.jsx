@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Error({msg}) {
+function Error({error}) {
   return (
-    <div>{msg}</div>
+    <div>{error.message}</div>
   )
 }
 

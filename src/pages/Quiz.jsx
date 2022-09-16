@@ -54,7 +54,7 @@ function Quiz() {
   });
 
   if(error) {
-    return <Error msg={error} />
+    return <Error error={error} />
   }
 
   if(!response && !error) {

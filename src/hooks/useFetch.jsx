@@ -10,13 +10,13 @@ export default function useFetch(url) {
       try {
         const res = await fetch(url);
         if (!res.ok) {
-          throw Error(res.statusText);
+          throw new Error(res.statusText);
         }
 
         const data = await res.json();
 
         if (data.response_code !== 0) {
-          throw Error(data.response_code);
+          throw new Error(data.response_code);
         }
 
         setResponse(data);
