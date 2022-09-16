@@ -29,5 +29,5 @@ export default function useFetch(url) {
     doFetch();
   }, []);
 
-  return [ response, error ];
+  return { response, error };
 }
