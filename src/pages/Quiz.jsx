@@ -8,12 +8,13 @@ import useFetch from "../hooks/useFetch";
 import decodeHtml from "../utils/decode";
 
 function Quiz() {
+  const {response: questions, error} = useFetch("https://opentdb.com/api.php?amount=5");
+  
   const [isFinished, setIsFinished] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState(
     new Array(questions.length).fill("")
   );
 
-  const {response: questions, error} = useFetch("https://opentdb.com/api.php?amount=5");
 
 
   function getAnswers(index) {
