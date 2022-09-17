@@ -39,8 +39,8 @@ function Quiz() {
 
   if (isFinished) {
     score = 0
-    for (let i = 0; i < questions.length; i++) {
-      score += questions[i].correct_answer === selectedAnswers[i] ? 1 : 0
+    for (let i = 0; i < questions.current.length; i++) {
+      score += questions.current[i].correct_answer === selectedAnswers[i] ? 1 : 0
     }
   }
 console.log(score)
