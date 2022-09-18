@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function Settings() {
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedQuestionCount, setSelectedQuestionCount] = useState(0)
+  const [selectedSettings, setSelectedSettings] = useState({categoryId: 9, questionCount: 5})
   const selectedQuestionCountOption = []
 
   useEffect(() => {
@@ -29,7 +28,7 @@ function Settings() {
       <option
         key={category.id}
         value={category.name}
-        onClick={() => setSelectedCategory(category.id)}
+        onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, categoryId: category.id}))}
       >
         {category.name}
       </option>
@@ -41,7 +40,7 @@ function Settings() {
     selectedQuestionCountOption.push(
       <option
         value={i}
-        onClick={() => setSelectedQuestionCount(i)}
+        onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, questionCount: i}))}
       >
         {i}
       </option>
@@ -49,7 +48,7 @@ function Settings() {
   }
   
 
-  console.log(selectedCategory, selectedQuestionCount)
+  console.log(selectedSettings)
   return (
     <div className="intro-container">
       <h1 className="intro-title">Set the category and number of questions you want to answer:</h1>
