@@ -4,11 +4,15 @@ import useFetch from "./hooks/useFetch";
 const Context = createContext();
 
 function ContextProvider(props) {
-    const fetchObj = useFetch("https://opentdb.com/api.php?amount=5")
+    // const fetchObj = useFetch("https://opentdb.com/api.php?amount=5")
+
+    function apiCall(amount = "amount=5", category = "") {
+        return useFetch(`https://opentdb.com/api.php?${amount}&${category}`)
+    }
     
 
   return (
-    <Context.Provider value={fetchObj}> 
+    <Context.Provider value={apiCall()}> 
         {props.children}
     </Context.Provider>
   )

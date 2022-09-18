@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {useNavigate} from "react-router-dom"
+import { ContextObj } from "../Context";
 
 function Settings() {
   const [categories, setCategories] = useState([]);
-  const [selectedSettings, setSelectedSettings] = useState({categoryId: 9, questionCount: 5})
+  const [selectedSettings, setSelectedSettings] = useState({questionCount: "?amount=5", categoryId: "&category=15"})
   const selectedQuestionCountOption = []
   const navigate = useNavigate()
 
@@ -30,7 +31,7 @@ function Settings() {
       <option
         key={category.id}
         value={category.name}
-        onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, categoryId: category.id}))}
+        onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, categoryId: `&category=${category.id}`}))}
       >
         {category.name}
       </option>
@@ -43,7 +44,7 @@ function Settings() {
       <option
         key={i}
         value={i}
-        onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, questionCount: i}))}
+        onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, questionCount: `?amount=${i}`}))}
       >
         {i}
       </option>
@@ -51,7 +52,7 @@ function Settings() {
   }
 
   function submitSettings() {
-
+    
     navigate('/quiz')
   }
 
