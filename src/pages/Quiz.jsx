@@ -7,45 +7,47 @@ import Spinner from "../components/Spinner";
 import useFetch from "../hooks/useFetch";
 import decodeHtml from "../utils/decode";
 import { shuffleArray } from "../utils/shuffle";
+import { Link, useNavigate } from "react-router-dom";
 
 function Quiz() {
-  const {response, error} = useFetch("https://opentdb.com/api.php?amount=5");
+  const { response, error } = useFetch("https://opentdb.com/api.php?amount=5");
   const [isFinished, setIsFinished] = useState(false);
-  let score
-  
+  const navigate = useNavigate();
+  let score;
+
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   if (!selectedAnswers.length && response) {
-    setSelectedAnswers(new Array(response?.results.length).fill(""))
+    setSelectedAnswers(new Array(response?.results.length).fill(""));
   }
 
-  const questions = useRef()
+  const questions = useRef();
   if (!questions.current && response) {
-    questions.current = response?.results.map(question => ({
+    questions.current = response?.results.map((question) => ({
       ...question,
       answers: shuffleArray([
         question.correct_answer,
-        question.incorrect_answers
+        question.incorrect_answers,
       ]),
-    }))
+    }));
   }
 
   function setSelectedAnswer(questionIndex, newSelectedAnswer) {
     setSelectedAnswers((prevSelectedAnswers) => {
-      const selectedAnswers = prevSelectedAnswers.slice()
+      const selectedAnswers = prevSelectedAnswers.slice();
       selectedAnswers[questionIndex] = newSelectedAnswer;
-      return selectedAnswers
+      return selectedAnswers;
     });
   }
 
   if (isFinished) {
-    score = 0
+    score = 0;
     for (let i = 0; i < questions.current.length; i++) {
-      score += questions.current[i].correct_answer === selectedAnswers[i] ? 1 : 0
+      score +=
+        questions.current[i].correct_answer === selectedAnswers[i] ? 1 : 0;
     }
   }
-console.log(score)
+  console.log(score);
   const questionElements = questions.current?.map((question, index) => {
-
     return (
       <Question
         key={index}
@@ -58,23 +60,36 @@ console.log(score)
     );
   });
 
-  if(error) {
-    return <Error error={error} />
+  if (error) {
+    return <Error error={error} />;
   }
 
-  if(!response && !error) {
-    return <Spinner />
+  if (!response && !error) {
+    return <Spinner />;
   }
-
 
   return (
     <div className="question-container">
       {questionElements}
       <div className="results">
-        <button className="checkAnswers" onClick={() => setIsFinished(true)}>
-          Check Answers
-        </button>
-        {score}
+        {!isFinished ? (
+          <button 
+            className="check-answers" 
+            onClick={() => setIsFinished(true)}
+            disabled={selectedAnswers.some(answer => answer === '') ? true : false}
+            >
+            Check Answers
+          </button>
+        ) : (
+          <>
+            <span>
+              Correct Answers: {score}/{questions.current.length}
+            </span>
+            <button className="play-again-btn" onClick={() => navigate("/")}>
+              Play Again
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
