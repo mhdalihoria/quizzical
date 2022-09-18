@@ -46,7 +46,7 @@ function Quiz() {
         questions.current[i].correct_answer === selectedAnswers[i] ? 1 : 0;
     }
   }
-  console.log(score);
+  
   const questionElements = questions.current?.map((question, index) => {
     return (
       <Question
