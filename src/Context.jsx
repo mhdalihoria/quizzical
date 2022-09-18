@@ -1,37 +1,19 @@
-// import React, { createContext, useState, useRef } from "react";
-// import useFetch from "./hooks/useFetch";
+import React, { createContext, useState, useRef } from "react";
+import useFetch from "./hooks/useFetch";
 
-// const Context = createContext();
+const Context = createContext();
 
-// function ContextProvider(props) {
-//   const [allQuestions, setAllQuestions] = useState([]);
-//   const [score, setScore] = useState(0)
-
-//   const [responseArray] = useFetch("https://opentdb.com/api.php?amount=5") 
+function ContextProvider(props) {
   
 
-//   function assignFetchedQuestions() {
-//     if(responseArray !== allQuestions) {
-//         setAllQuestions(responseArray)
-//     }
-//   }
+  return (
+    <Context.Provider value={''}> 
+        {props.children}
+    </Context.Provider>
+  )
+}
 
-//   function updateScore(amount) {
-//     setScore(prevScore => {
-//       return prevScore + amount
-//     })
-//   }
-
-//   assignFetchedQuestions()
-
-//   return (
-//     <Context.Provider value={{allQuestions, score, updateScore}}> 
-//         {props.children}
-//     </Context.Provider>
-//   )
-// }
-
-// export {ContextProvider, Context as ContextObj};
+export {ContextProvider, Context as ContextObj};
 
 
 // /*

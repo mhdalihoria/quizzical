@@ -39,6 +39,7 @@ function Settings() {
   for(let i = 5; i <= 50; i++) {
     selectedQuestionCountOption.push(
       <option
+        key={i}
         value={i}
         onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, questionCount: i}))}
       >
@@ -57,6 +58,8 @@ function Settings() {
 
       <h6 className="intro-description">Number of questions:</h6>
       <select>{selectedQuestionCountOption}</select>
+
+      <button className="check-answers">Start Quiz</button>
     </div>
   );
 }
