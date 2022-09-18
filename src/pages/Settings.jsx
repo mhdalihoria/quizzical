@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom"
 
 function Settings() {
   const [categories, setCategories] = useState([]);
   const [selectedSettings, setSelectedSettings] = useState({categoryId: 9, questionCount: 5})
   const selectedQuestionCountOption = []
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchCategories() {
@@ -47,7 +49,11 @@ function Settings() {
       </option>
     ) 
   }
-  
+
+  function submitSettings() {
+
+    navigate('/quiz')
+  }
 
   console.log(selectedSettings)
   return (
@@ -59,7 +65,7 @@ function Settings() {
       <h6 className="intro-description">Number of questions:</h6>
       <select>{selectedQuestionCountOption}</select>
 
-      <button className="check-answers">Start Quiz</button>
+      <button className="check-answers" onClick={submitSettings}>Start Quiz</button>
     </div>
   );
 }

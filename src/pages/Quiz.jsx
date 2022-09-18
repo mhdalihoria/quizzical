@@ -3,14 +3,15 @@ import React, { useState, useContext, useRef } from "react";
 import Question from "../components/Question";
 import Error from "../components/Error";
 import Spinner from "../components/Spinner";
-// import { ContextObj } from "../Context";
+import { ContextObj } from "../Context";
 import useFetch from "../hooks/useFetch";
 import decodeHtml from "../utils/decode";
 import { shuffleArray } from "../utils/shuffle";
 import { Link, useNavigate } from "react-router-dom";
 
 function Quiz() {
-  const { response, error } = useFetch("https://opentdb.com/api.php?amount=5");
+  // const { response, error } = useFetch("https://opentdb.com/api.php?amount=5");
+  const {response, error} = useContext(ContextObj)
   const [isFinished, setIsFinished] = useState(false);
   const navigate = useNavigate();
   let score;
