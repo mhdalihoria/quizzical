@@ -9,7 +9,7 @@ function ContextProvider(props) {
     const [fetchObj, setFetchObj] = useState(useFetch("https://opentdb.com/api.php?amount=5"))
 
     function apiCall(amount = "amount=5", category = "") {
-        return useFetch(`https://opentdb.com/api.php?${amount}&${category}`)
+      setFetchObj(useFetch(`https://opentdb.com/api.php?${amount}&${category}`))
     }
     
 
