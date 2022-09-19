@@ -11,12 +11,11 @@ import { shuffleArray } from "../utils/shuffle";
 
 function Quiz() {
   // const { response, error } = useFetch("https://opentdb.com/api.php?amount=5");
-  const {response, error} = useContext(ContextObj)
-  
+  const {fetchObj} = useContext(ContextObj)
+  const {response, error} = fetchObj
   const [isFinished, setIsFinished] = useState(false);
   const navigate = useNavigate();
   let score;
-
 
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   if (!selectedAnswers.length && response) {

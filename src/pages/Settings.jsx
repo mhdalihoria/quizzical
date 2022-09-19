@@ -7,6 +7,7 @@ function Settings() {
   const [selectedSettings, setSelectedSettings] = useState({questionCount: "?amount=5", categoryId: "&category=15"})
   const selectedQuestionCountOption = []
   const navigate = useNavigate()
+  const {apiCall} = useContext(ContextObj)
 
   useEffect(() => {
     async function fetchCategories() {
@@ -52,7 +53,7 @@ function Settings() {
   }
 
   function submitSettings() {
-    
+    apiCall(selectedSettings.questionCount, selectedSettings.categoryId)
     navigate('/quiz')
   }
 
