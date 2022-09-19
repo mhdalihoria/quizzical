@@ -5,7 +5,7 @@ const Context = createContext();
 
 function ContextProvider(props) {
     // const fetchObj = useFetch("https://opentdb.com/api.php?amount=5")
-
+// s
     function apiCall(amount = "amount=5", category = "") {
         return useFetch(`https://opentdb.com/api.php?${amount}&${category}`)
     }
