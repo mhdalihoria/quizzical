@@ -4,9 +4,10 @@ import { ContextObj } from "../Context";
 
 function Settings() {
   const [categories, setCategories] = useState([]);
-  const [selectedSettings, setSelectedSettings] = useState({questionCount: "?amount=5", categoryId: "&category=15"})
+  const [selectedSettings, setSelectedSettings] = useState({questionCount: 5, categoryId: "15"})
   const selectedQuestionCountOption = []
   const navigate = useNavigate()
+  const {setCount, setCategoryId} = useContext(ContextObj) 
 
   useEffect(() => {
     async function fetchCategories() {
@@ -31,7 +32,7 @@ function Settings() {
       <option
         key={category.id}
         value={category.name}
-        onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, categoryId: `&category=${category.id}`}))}
+        onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, categoryId: `${category.id}`}))}
       >
         {category.name}
       </option>
@@ -44,7 +45,7 @@ function Settings() {
       <option
         key={i}
         value={i}
-        onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, questionCount: `?amount=${i}`}))}
+        onClick={() => setSelectedSettings(prevSelectedSettings => ({...prevSelectedSettings, questionCount: i}))}
       >
         {i}
       </option>
@@ -52,7 +53,8 @@ function Settings() {
   }
 
   function submitSettings() {
-    
+    setCount(selectedSettings.questionCount)
+    setCategoryId(selectedSettings.categoryId)
     navigate('/quiz')
   }
 
