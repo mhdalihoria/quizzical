@@ -9,8 +9,8 @@ const initialState ={
 }
 
 function ContextProvider(props) {
-  const [count, setCount] = useState(5);
-  const [categoryId, setCategoryId] = useState('15');
+  const [count, setCount] = useState(initialState.count);
+  const [categoryId, setCategoryId] = useState(initialState.categoryId);
   const settingsContext = {count, setCount, categoryId, setCategoryId};
 
   console.log(count)
