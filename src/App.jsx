@@ -6,7 +6,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Intro from "./pages/Intro";
 import Settings from "./pages/Settings";
 import "./App.css";
-import Quiz from "./pages/Quiz";
+import Quiz from "./components/Quiz";
+import DefaultQuiz from "./pages/defaultQuiz";
+import CustomQuiz from "./pages/CustomQuiz";
 
 
 function App() {
@@ -19,7 +21,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Intro />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/quiz" element={<Quiz />} />
+        {/* <Route path="/quiz" element={<Quiz />} /> */}
+        <Route path="/quiz" element={<DefaultQuiz />} />
+        <Route path="/custom-quiz" element={<CustomQuiz />} />
       </Routes>
     </Router>
   </>

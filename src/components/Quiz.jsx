@@ -9,13 +9,8 @@ import useFetch from "../hooks/useFetch";
 import decodeHtml from "../utils/decode";
 import { shuffleArray } from "../utils/shuffle";
 
-function Quiz() {
-
-  // const { response, error } = useFetch("https://opentdb.com/api.php?amount=5");
-  // const {fetchObj} = useContext(ContextObj)
-  // const {response, error} = fetchObj
-
-  const {count, categoryId} = useContext(ContextObj)
+function Quiz({count, categoryId}) {
+  // const {count, categoryId} = useContext(ContextObj)
   const { response, error } = useFetch(`https://opentdb.com/api.php?amount=${count}&category=${categoryId}`);
 
 
