@@ -3,10 +3,10 @@ import Quiz from '../components/Quiz'
 import { ContextObj } from '../Context'
 
 function CustomQuiz() {
-  const {count, categoryId} = useContext(ContextObj)
+  const context = useContext(ContextObj)
   
     return (
-    <Quiz count={count} categoryId={categoryId}/>
+    <Quiz {...context}/>
   )
 }
 

@@ -84,12 +84,12 @@ function Settings() {
       <h6 className="intro-description">Number of questions:</h6>
       <select>{selectedQuestionCountOption}</select>
 
-      <button className="check-answers">
+    {/* <button className="check-answers">
         <Link to="/quiz">Default Quiz</Link>
-      </button>
+      </button> */}
 
-      <button className="check-answers">
-        <Link to="/custom-quiz">Custom Quiz</Link>
+      <button className="check-answers" onClick={()=> navigate('/custom-quiz')}>
+        Custom Quiz
       </button>
     </div>
   );
