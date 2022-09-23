@@ -18,7 +18,8 @@ body {
   flex-direction: column;
   align-items: center;
 
-  padding-top: 280px;
+  /* padding-top: 280px; */
+  padding-top: 35vh;
 }
 
 .intro-title, .settings-title {
@@ -168,7 +169,7 @@ body {
   color: #293264;
 }
 
-.check-answers, .play-again-btn {
+.check-answers, .play-again-btn, .custom-quiz {
   width: 35%;
 
   padding: 15px 1px;
@@ -187,7 +188,7 @@ body {
 
 /***************** Settings Styling *******************/
 .settings-container {
-  padding-top: 210px;
+  padding-top: 25vh;
 }
 
 .settings-title {
@@ -214,6 +215,10 @@ body {
   color:  #3e4879;;
 
   margin-bottom: 1.5em;
+}
+
+.custom-quiz {
+  width:250px
 }
 
 /***************** Decorative Blobs Styling *******************/

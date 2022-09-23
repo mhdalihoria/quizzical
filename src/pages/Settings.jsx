@@ -77,7 +77,7 @@ function Settings() {
       </div>
 
       <button
-        className="check-answers"
+        className="custom-quiz"
         onClick={() => navigate("/custom-quiz")}
       >
         Custom Quiz
