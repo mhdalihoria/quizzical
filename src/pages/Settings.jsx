@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { ContextObj } from "../Context";
+import Spinner from "../components/Spinner";
 
 function Settings() {
   const [categories, setCategories] = useState([]);
-  const [selectedSettings, setSelectedSettings] = useState({
-    questionCount: 5,
-    categoryId: "15",
-  });
+  const { setCount, setCategoryId } = useContext(ContextObj);
+
   const selectedQuestionCountOption = [];
   const navigate = useNavigate();
-  const { setCount, setCategoryId } = useContext(ContextObj);
 
   useEffect(() => {
     async function fetchCategories() {
@@ -36,10 +35,6 @@ function Settings() {
         key={category.id}
         value={category.name}
         onClick={() => {
-          setSelectedSettings((prevSelectedSettings) => ({
-            ...prevSelectedSettings,
-            categoryId: `${category.id}`,
-          }));
           setCategoryId(category.id);
         }}
       >
@@ -54,10 +49,6 @@ function Settings() {
         key={i}
         value={i}
         onClick={() => {
-          setSelectedSettings((prevSelectedSettings) => ({
-            ...prevSelectedSettings,
-            questionCount: i,
-          }));
           setCount(i);
         }}
       >
@@ -66,29 +57,29 @@ function Settings() {
     );
   }
 
-  // function submitSettings() {
-  //   setCount(selectedSettings.questionCount);
-  //   setCategoryId(selectedSettings.categoryId);
-  //   navigate("/quiz");
-  // }
+  if (categories.length === 0) {
+    return <Spinner />;
+  }
 
-  // console.log(selectedSettings);
   return (
-    <div className="intro-container">
-      <h1 className="intro-title">
+    <div className="settings-container">
+      <h1 className="settings-title">
         Set the category and number of questions you want to answer:
       </h1>
-      <h6 className="intro-description">Category type:</h6>
-      <select>{categoriesOptionElements}</select>
 
-      <h6 className="intro-description">Number of questions:</h6>
-      <select>{selectedQuestionCountOption}</select>
+      <div className="settings-select-section">
+        <h6 className="settings-subtitle">Category type:</h6>
+        <select>{categoriesOptionElements}</select>
+      </div>
+      <div className="settings-select-section">
+        <h6 className="settings-subtitle">Number of questions:</h6>
+        <select>{selectedQuestionCountOption}</select>
+      </div>
 
-    {/* <button className="check-answers">
-        <Link to="/quiz">Default Quiz</Link>
-      </button> */}
-
-      <button className="check-answers" onClick={()=> navigate('/custom-quiz')}>
+      <button
+        className="check-answers"
+        onClick={() => navigate("/custom-quiz")}
+      >
         Custom Quiz
       </button>
     </div>

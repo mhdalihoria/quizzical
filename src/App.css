@@ -10,9 +10,8 @@ body {
   max-height: 100vh;
 }
 
-/***************** Intro Styling *******************/
-
-.intro-container {
+/***************** Intro Styling (merged with Settings styling for the styles that are identical) *******************/
+.intro-container, .settings-container {
   font-family: "Karla", sans-serif;
 
   display: flex;
@@ -22,7 +21,7 @@ body {
   padding-top: 280px;
 }
 
-.intro-title {
+.intro-title, .settings-title {
   font-weight: 700;
   font-size: 2rem;
   line-height: 2.15rem;
@@ -132,8 +131,6 @@ body {
   cursor: pointer;
 }
 
-
-/* Option styling Choices?  */
 .answer-selected {
   border: none;
   background: #d6dbf5;
@@ -174,10 +171,10 @@ body {
 .check-answers, .play-again-btn {
   width: 35%;
 
-  padding: 10px 1px;
+  padding: 15px 1px;
 
   font-weight: 500;
-  font-size: 0.7rem;
+  font-size: 0.8em;
   line-height: 12px;
   color: #f5f7fb;
 
@@ -188,12 +185,32 @@ body {
   cursor: pointer;
 }
 
-/* .play-again-link, .play-again-link:visited {
-  text-decoration: none;
-  color: white;
-  font-size: .8rem;
-} */
+/***************** Settings Styling *******************/
+.settings-title {
+  font-size: 1.3rem;
+}
 
+.settings-select-section {
+  width: 250px;
+  margin-bottom: 1rem;
+}
+
+.settings-select-section select {
+  width: 250px;
+  background: transparent;
+  border: 1px solid #8a97e2;
+  border-radius: 5px;
+  padding: 10px 25px;
+  text-align: center;;
+}
+
+.settings-subtitle {
+  text-align: left;
+  font-size: .9rem;
+  color:  #3e4879;;
+
+  margin-bottom: 1.5em;
+}
 
 /***************** Decorative Blobs Styling *******************/
 .decorative {

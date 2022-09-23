@@ -1,5 +1,4 @@
 import React, { createContext, useState} from "react";
-import useFetch from "./hooks/useFetch";
 
 const Context = createContext();
 
@@ -13,7 +12,6 @@ function ContextProvider(props) {
   const [categoryId, setCategoryId] = useState(initialState.categoryId);
   const settingsContext = {count, setCount, categoryId, setCategoryId};
 
-  console.log(count)
 
   return (
 
