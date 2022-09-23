@@ -244,7 +244,7 @@ button:active {
 .blue {
   background: #DEEBF8;
   border-radius: 72% 28% 74% 26%/52% 57% 43% 48%;
-  bottom: -30%;
+  top: 100%;
   transform: translate(-40%,-60%);
   z-index: -1;
 }
