@@ -186,6 +186,10 @@ body {
 }
 
 /***************** Settings Styling *******************/
+.settings-container {
+  padding-top: 210px;
+}
+
 .settings-title {
   font-size: 1.3rem;
 }
