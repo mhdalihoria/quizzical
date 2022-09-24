@@ -4,7 +4,7 @@ const Context = createContext();
 
 const initialState ={
   count: 5, 
-  categoryId: "15"
+  categoryId: "9"
 }
 
 function ContextProvider(props) {

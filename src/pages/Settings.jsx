@@ -33,10 +33,7 @@ function Settings() {
     return (
       <option
         key={category.id}
-        value={category.name}
-        onClick={() => {
-          setCategoryId(category.id);
-        }}
+        value={category.id}
       >
         {category.name}
       </option>
@@ -48,9 +45,6 @@ function Settings() {
       <option
         key={i}
         value={i}
-        onClick={() => {
-          setCount(i);
-        }}
       >
         {i}
       </option>
@@ -69,17 +63,18 @@ function Settings() {
 
       <div className="settings-select-section">
         <h6 className="settings-subtitle">Category type:</h6>
-        <select>{categoriesOptionElements}</select>
+        <select onChange={(e) => setCategoryId(e.target.value)}>
+          {categoriesOptionElements}
+        </select>
       </div>
       <div className="settings-select-section">
         <h6 className="settings-subtitle">Number of questions:</h6>
-        <select>{selectedQuestionCountOption}</select>
+        <select onChange={(e) => setCount(e.target.value)}>
+          {selectedQuestionCountOption}
+        </select>
       </div>
 
-      <button
-        className="custom-quiz"
-        onClick={() => navigate("/custom-quiz")}
-      >
+      <button className="custom-quiz" onClick={() => navigate("/custom-quiz")}>
         Custom Quiz
       </button>
     </div>
